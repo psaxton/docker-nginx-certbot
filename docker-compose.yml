@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+    nginx:
+        image: nginx-certbot:latest
+        build:
+            context: nginx-certbot
+        ports:
+          - "80:80"
+          - "443:443"
+        volumes:
+          - "./etc/nginx/:/etc/nginx/:ro"
+          - "ssl_certs:/etc/letsencrypt"
+        restart: always
+
+volumes:
+    ssl_certs: {}
